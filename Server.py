@@ -19,7 +19,6 @@ if __name__ == '__main__':
             status = app.state()#
             if not status == 'normal':
                 os._exit(1)
-                break
+
         except Exception as e:
             os._exit(1)
-            #exit()

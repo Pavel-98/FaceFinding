@@ -21,14 +21,6 @@ class RecordApp:
         self.previousButton = self.GetPreviousButton()
         self.AddRecords(0)
 
-
-    '''def UpdateScroll(self):
-        if self.scrollbar:
-            self.scrollbar.destroy()
-        self.scrollbar = tkinter.Scrollbar(self.app)
-        self.scrollbar.grid(row=1, column=4, rowspan=len(records))'''
-
-
     def GetNextButton(self):
         nextButton = tkinter.Button(self.app, command=lambda: self.ShowRecord(1), text="Наступний")
         nextButton.grid(row=1, column=3, sticky='E')

@@ -42,11 +42,11 @@ class Connection:
         self.cascade = cv2.cv2.CascadeClassifier(self.front_face_path)
         self.requiredFaces = []
         self.thread = Thread(target=self.UpdateRectangles)
-        #self.camera = camera
+
 
     def SetDeleteButton(self):
         if self.fields:
-            button = Button(app, text="Видалити: "+self.camera, command=lambda: self.Exit())#self.fields['delete']
+            button = Button(app, text="Видалити: "+self.camera, command=lambda: self.Exit())
             self.fields['delete'] = button
             row = self.fields['row']
             button.grid(row=row, column=2)
@@ -58,7 +58,6 @@ class Connection:
                 self.UpdateImage(info)
                 self.Send()
             except Exception as e:
-                #print(e)
                 self.Exit()
                 break
 
@@ -105,9 +104,6 @@ class Connection:
     def FindFaces(self):
         faces = face_recognition.face_locations(self.image)
         return faces
-        #self.cascade.detectMultiScale(self.image, scaleFactor=2, minNeighbors=5)
-
-
 
     def CheckFaces(self, faces):
         requiredFaces = []
@@ -142,7 +138,6 @@ class Connection:
         for x, y, w, h in self.requiredFaces:
             cv2.rectangle(self.image, (x, y), (x + w, y + h), color, length)
         self.requiredFaces =[]
-        #self.canUpdateRectangles = True
 
     def GetEnc(self, faceInfo):  #
         encoding = face_recognition.face_encodings(faceInfo)

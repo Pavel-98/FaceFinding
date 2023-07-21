@@ -4,8 +4,7 @@ import pickle
 from Record import Record
 
 path = 'DB.file'
-db = {}#{"КПС-1": ["КПС-12022-06-0421:37:14:303836Camera.record"],
-      #"KPS-2": ['KPS-22022-06-0421:37:14:303836Camera.record']}
+db = {}
 
 
 def Exist(path):

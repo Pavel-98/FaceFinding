@@ -15,7 +15,7 @@ from Program import Connection
 
 host = '192.168.0.103'
 port = 4321
-front_face_path = 'data\\haarcascade_frontalface_alt2.xml'#'data\\haarcascade_frontalface_default.xml'
+front_face_path = 'data\\haarcascade_frontalface_alt2.xml'
 size = 921762
 cascade = cv2.CascadeClassifier(front_face_path)
 enc1 = None
@@ -79,38 +79,6 @@ def  tryConnect(c):
     else:
        c.send(b'2')
        c.close()
-
-'''def Show(frame, fields):
-    FindFace(frame)#s[id])
-    imag = ImageTk.PhotoImage(Image.fromarray(frame))#s[id]))
-    fields['image'].configure(image=imag)
-    fields['image'].image = imag
-
-def UpdateImage(c, fields):
-    frame = []
-    id = clientsFrames[c]
-    frames.append(frame)
-    #Thread(target=FindFace, args=(id,)).start()
-    while True:
-        info = c.recv(size)
-        length = len(info)
-        if length != size:
-            c.send(b'2')
-            continue
-        try:
-            frame = pickle.loads(info)
-            #frames[id] = frame
-            Show(frame, fields)
-        except Exception as e:
-            print(e)
-            Exit(c, fields)
-        c.send(b'2' )
-        if cv2.waitKey(20) & 0xff == ord('q'):
-            Exit(c, fields)
-            break'''
-
-
-
 
 def WorkWithClient(c, id):
     global connectionNumber

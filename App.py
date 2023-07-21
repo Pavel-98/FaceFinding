@@ -59,9 +59,6 @@ def GetBaseApp():
     base.title("Відстежування")
     GetBaseItem(base)
 
-
-
-
 def AddFace(root):
     global baseNumber, db, newFace
     faceInfo = Dialog(root)
@@ -88,7 +85,6 @@ def AddProfile(root):
         label.image = tkinterProfile
         newProfile = profile
     return
-    #return
 
 def DeleteWidget(widgets):
     for widget in widgets:
@@ -110,10 +106,10 @@ def UpdateBase():
     base.destroy()
     newFace = None
     newProfile = None
-    SaveBase()#newNameLabel.text = ''
+    SaveBase()
     LoadBase()
     GetBaseApp()
-def AddToBase(root):#
+def AddToBase(root):
     global newFace, newProfile, id, newNameLabel, allowed
     allowed = False
     sleep(seconds)
@@ -131,11 +127,7 @@ def AddToBase(root):#
     except:
         return
     profileEncoding = GetEnc(profileArray, width, height)
-    '''allowed = False
-    sleep(1)'''
     db[name] = {'face': faceArray, 'faceEncoding': faceEncoding, 'profile': profileArray, 'profileEncoding': profileEncoding, 'name': name}
-    '''sleep(1)
-    allowed=True'''
     id += 1
     UpdateBase()
     return
@@ -160,12 +152,11 @@ def GetBaseItem(root):
     ShowBase(root)
     if baseNumber >= limit:
         return
-    newNameLabel = tkinter.Text(root, height=1, width=10)#GetBaseItemsList(root)
+    newNameLabel = tkinter.Text(root, height=1, width=10)
     newNameLabel.grid(row=baseNumber, column=1)
     faceButton = tkinter.Button(root, command=lambda: AddFace(root), text=addFaceText)
     faceButton.grid(row=baseNumber, column=2)
-    #profileButton = tkinter.Button(root, command=lambda: AddProfile(root), text=addProfileText)
-    #profileButton.grid(row=baseNumber, column=3)
+
     addButton = tkinter.Button(root, text=addItemText, command=lambda:AddToBase(root))
     addButton.grid(row=baseNumber, column=3)
     baseNumber += 1
@@ -175,8 +166,6 @@ def AddItem():
     n += 1
     imageField = tkinter.Label(app)#\
     imageField.grid (row=n, column=1)
-    deleteField = None#tkinter.Button(app)#\
-    #deleteField.grid(row=n, column=2)
     return {'image': imageField, 'row': n}
 
 def DeleteItem(fields):
@@ -187,7 +176,7 @@ def DeleteItem(fields):
 
 def Dialog(base):
     file_types = [('Image files', '*.jpg;*.png'), (
-    'All files', '*')]  # Initially can select any .py or .pyw files but can change the selection to anything (*)
+    'All files', '*')]
     file_name = filedialog.askopenfilename(title='Select a file', filetypes=file_types, parent=base)
     if file_name == '':
         return [None]
@@ -197,8 +186,8 @@ def Dialog(base):
 def CheckFile(filename, root):
     try:
         image = Image.open(filename)
-        x = 100#math.ceil(image.width/width)
-        y = 100#math.ceil(image.height / height)
+        x = 100
+        y = 100
         image = image.resize((x, y))
         return image
     except Exception as e:
@@ -221,18 +210,10 @@ def ShowBase(root):
 
         name = db[key]['name']
         if name:
-            #profile = tkinter.Label(master=root, text= image)
             labelProfile = tkinter.Label(root, text=name)
-            #labelProfile.configure(image=profile)
             labelProfile.grid(row=baseNumber, column = 2)
-            #labelProfile.image = profile
-
-
-        #i = int(key)
         deleteButton = tkinter.Button(root, text=deleteText, command=lambda name1=name: DeleteBaseItem(name1))
         deleteButton.grid(row=baseNumber, column=3)
-
-
         baseNumber += 1
 
 
@@ -244,7 +225,7 @@ def appendRow(items, row ):
         position += 1
 
 def GetRecordItem(root, row, record):
-    dateLabel = tkinter.Label(root, text=record.date)#561256
+    dateLabel = tkinter.Label(root, text=record.date)
     imageLabel = tkinter.Label(root, image=record.image)
     cameraLabel = tkinter.Label(text=record.camera)
     items = [dateLabel, imageLabel, cameraLabel]
@@ -253,18 +234,9 @@ def GetRecordItem(root, row, record):
 def GetRecordsApp():
     app = RecordApp()
 
-    #recordApp = tkinter.Toplevel()
 
-'''def AddOption(app):
-    pathList = DB.db.keys()
-    list = tkinter.OptionMenu(app, *pathList)
-    #list= DropList()
 
-def GetBaseItemsList(root):
-    values = list(DB.db.keys())
-    startValue = values[0]
-    itemsLabel = tkinter.OptionMenu(root, startValue, *values)
-    return itemsLabel'''
+
 
 
 
